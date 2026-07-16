@@ -19,9 +19,9 @@ This project explores the transition from static code generation to autonomous s
 * **State Management:** Maintains full interaction history, preserving the model's reasoning traces across turns.
 * **Autonomous Error Recovery:** Capable of reading Python tracebacks and rewriting code until it executes successfully.
 
-
-
-
+## Disclaimer
+   - To ensure safe execution, the agent is restricted to working within a provided demo calculator application. The working directory is hardcoded into the agent's logic to act as a security boundary, preventing it from reading or modifying unrelated personal files on your local machine.
+   - Run this at your own risk. This project is not production-ready. While basic guardrails like directory sandboxing are implemented, this is fundamentally an educational proof-of-concept. Autonomous agents can be unpredictable; do not run this in a sensitive environment or grant it access to critical file systems.
 
 ## Installation
 
