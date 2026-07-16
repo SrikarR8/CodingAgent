@@ -1,0 +1,8 @@
+- Added a proper tool-config builder in main.py using types.GenerateContentConfig so the model receives function declarations for tool calling.
+- Wired the available function schemas into the config: get_files_info, get_file_content, run_python_file, and write_file.
+- Updated the generate_content call to pass the config object correctly as config=config.
+- Fixed the history initialization to create the initial user message with the SDK-compatible Part constructor: types.Part.from_text(text=prompt).
+- Changed the loop to read tool calls from response.function_calls safely using getattr(..., "function_calls", None) rather than assuming the attribute is always present.
+- Prevented the script from auto-running on import by guarding the entry point with if __name__ == "__main__": main().
+- Added a regression test in tests/test_main.py to verify that the generated config includes the expected tool declarations.
+- Core issue: the agent was failing because the Google GenAI SDK version in this environment expected a different Part API, and the request config was not being built with tool declarations in the first place, so tool-calling could not work correctly.
